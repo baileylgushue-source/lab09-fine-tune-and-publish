@@ -1,0 +1,30 @@
+{
+    "test": {
+        "majority": {
+            "accuracy": 0.2916666666666667,
+            "macro_f1": 0.11290322580645161
+        },
+        "tfidf": {
+            "accuracy": 0.8291666666666667,
+            "macro_f1": 0.8285500133774703
+        },
+        "full": {
+            "accuracy": 0.8875,
+            "macro_f1": 0.8898689030267978
+        }
+    },
+    "own_messages": {
+        "majority": {
+            "accuracy": 0.25,
+            "macro_f1": 0.1
+        },
+        "tfidf": {
+            "accuracy": 0.775,
+            "macro_f1": 0.7725943646996278
+        },
+        "full": {
+            "accuracy": 0.825,
+            "macro_f1": 0.806971975393028
+        }
+    }
+}
