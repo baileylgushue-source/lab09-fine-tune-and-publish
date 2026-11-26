@@ -1,0 +1,41 @@
+text,label
+"How come my 15 minute ride cost me almost $30?",billing
+"I haven't used a bike in weeks but money keeps coming out of my account.",billing
+"Can I get my money back pls?",billing
+"I used a discount code and it still made me pay full price.",billing
+"My bank is showing two separate transactions for one rental.",billing
+"Why am I paying for something I didnt even use?",billing
+"I was trying to buy a single ride and somehow purchased a monthly pass.",billing
+"Is there a reason my payment is still pending after four days?",billing
+"I need a copy of my receipt for work.",billing
+"The app said $5 before I started and now its saying I owe $18.",billing
+"The bike felt like it was going to fall apart halfway through my ride.",bike_fault
+"Can't move the pedals at all.",bike_fault
+"The handlebars are crooked and its really difficult to steer.",bike_fault
+"Something is scraping against the tire whenever I move.",bike_fault
+"I almost crashed because the breaks weren't responding properly.",bike_fault
+"The seat has a huge rip in it and was soaking wet.",bike_fault
+"My bike kept making a clicking sound whenever I went uphill.",bike_fault
+"One of the wheels looks bent.",bike_fault
+"The handle you use to change gears is completely stuck.",bike_fault
+"There was a piece of the chain dragging along the ground.",bike_fault
+"Walked 15 minutes to pick up a bike and the entire rack was empty.",station
+"None of the parking spaces are working.",station
+"The screen at the rental location is completely black.",station
+"I tried three different spots and none of them would secure the bike.",station
+"Why does the app show available bikes when theres literally nothing here?",station
+"The pickup area is blocked off by construction.",station
+"Can you put more bike racks near the university?",station
+"The machine ate my rental code and nothing happened.",station
+"All the spots are taken and I'm going to be late for work.",station
+"The docking system keeps flashing an error mesage.",station
+"I got a new phone and now I can't access my old profile.",account
+"How do I change my last name on the app?",account
+"Forgot my login details again.",account
+"I'm trying to register but it says I already have a profile.",account
+"Can I put my membership on hold for a couple months?",account
+"My birthday is wrong in my personal settings.",account
+"I cant get past the verification page.",account
+"I want to close my profile because I'm moving out of Toronto.",account
+"Is there a way to change my username?",account
+"I upgraded my membership yesterday but my profile still shows the basic plan.",account
