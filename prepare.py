@@ -28,9 +28,7 @@ def split_data(seed: int = SEED):
     return train, validation, test
 
 
-def sample_training(
-    train: pd.DataFrame, n: int, seed: int = SEED
-) -> pd.DataFrame:
+def sample_training(train: pd.DataFrame, n: int, seed: int = SEED) -> pd.DataFrame:
     """Draw a stratified sample from the training data."""
     if n == len(train):
         return train.copy()

@@ -14,29 +14,33 @@ from finetune import (
 
 
 def small_batch():
-    return pd.DataFrame({
-        "text": [
-            "I was charged twice",
-            "My bike has a flat tire",
-            "The station has no bikes",
-            "I cannot access my account",
-        ],
-        "label": [
-            "billing",
-            "bike_fault",
-            "station",
-            "account",
-        ],
-    })
+    return pd.DataFrame(
+        {
+            "text": [
+                "I was charged twice",
+                "My bike has a flat tire",
+                "The station has no bikes",
+                "I cannot access my account",
+            ],
+            "label": [
+                "billing",
+                "bike_fault",
+                "station",
+                "account",
+            ],
+        }
+    )
 
 
 def test_tokenization():
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
-    data = pd.DataFrame({
-        "text": ["bike " * 500],
-        "label": ["bike_fault"],
-    })
+    data = pd.DataFrame(
+        {
+            "text": ["bike " * 500],
+            "label": ["bike_fault"],
+        }
+    )
 
     encoded = tokenize_data(data, tokenizer)
 
@@ -47,24 +51,16 @@ def test_tokenization():
 def test_freezing_body():
     model = build_model(head_only=True)
 
-    assert all(
-        not p.requires_grad
-        for p in model.distilbert.parameters()
-    )
+    assert all(not p.requires_grad for p in model.distilbert.parameters())
 
-    assert all(
-        p.requires_grad
-        for p in model.classifier.parameters()
-    )
+    assert all(p.requires_grad for p in model.classifier.parameters())
 
 
 def test_head_only_weights_unchanged():
     data = small_batch()
     original = build_model(head_only=True, seed=42)
 
-    trained, _, _ = train_model(
-        data, data, head_only=True, seed=42, epochs=1
-    )
+    trained, _, _ = train_model(data, data, head_only=True, seed=42, epochs=1)
 
     assert all(
         torch.equal(before, after)
@@ -80,9 +76,7 @@ def test_full_training_changes_weights():
     data = small_batch()
     original = build_model(seed=42)
 
-    trained, _, _ = train_model(
-        data, data, seed=42, epochs=1
-    )
+    trained, _, _ = train_model(data, data, seed=42, epochs=1)
 
     assert any(
         not torch.equal(before, after)
@@ -97,13 +91,9 @@ def test_full_training_changes_weights():
 def test_same_seed_repeats_run():
     data = small_batch()
 
-    first, _, history1 = train_model(
-        data, data, seed=42, epochs=1
-    )
+    first, _, history1 = train_model(data, data, seed=42, epochs=1)
 
-    second, _, history2 = train_model(
-        data, data, seed=42, epochs=1
-    )
+    second, _, history2 = train_model(data, data, seed=42, epochs=1)
 
     assert history1 == history2
 
@@ -135,21 +125,16 @@ def test_memorize_small_batch():
 def test_saved_model_reload(tmp_path):
     data = small_batch()
 
-    model, tokenizer, _ = train_model(
-        data, data, seed=42, epochs=1
-    )
+    model, tokenizer, _ = train_model(data, data, seed=42, epochs=1)
 
     before = predict(model, tokenizer, data)
 
     model.save_pretrained(tmp_path)
     tokenizer.save_pretrained(tmp_path)
 
-    loaded_model = AutoModelForSequenceClassification.from_pretrained(
-        tmp_path
-    )
+    loaded_model = AutoModelForSequenceClassification.from_pretrained(tmp_path)
     loaded_tokenizer = AutoTokenizer.from_pretrained(tmp_path)
 
     after = predict(loaded_model, loaded_tokenizer, data)
 
     assert before == after
-    

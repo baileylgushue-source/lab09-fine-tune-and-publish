@@ -9,12 +9,8 @@ def test_tfidf_beats_majority():
     majority = train_majority(sample)
     tfidf = train_tfidf(sample)
 
-    majority_accuracy = majority.score(
-        val["text"], val["label"]
-    )
+    majority_accuracy = majority.score(val["text"], val["label"])
 
-    tfidf_accuracy = tfidf.score(
-        val["text"], val["label"]
-    )
+    tfidf_accuracy = tfidf.score(val["text"], val["label"])
 
     assert tfidf_accuracy > majority_accuracy

@@ -14,13 +14,18 @@ def train_majority(train: pd.DataFrame):
 
 def train_tfidf(train: pd.DataFrame, seed: int = 42):
     """Train the TF-IDF and logistic regression baseline."""
-    model = Pipeline([
-        ("tfidf", TfidfVectorizer()),
-        ("classifier", LogisticRegression(
-            max_iter=1000,
-            random_state=seed,
-        )),
-    ])
+    model = Pipeline(
+        [
+            ("tfidf", TfidfVectorizer()),
+            (
+                "classifier",
+                LogisticRegression(
+                    max_iter=1000,
+                    random_state=seed,
+                ),
+            ),
+        ]
+    )
 
     model.fit(train["text"], train["label"])
     return model

@@ -15,10 +15,7 @@ def classify_message(text):
 
     results = classifier(text, truncation=True, max_length=128)[0]
 
-    return {
-        result["label"]: float(result["score"])
-        for result in results
-    }
+    return {result["label"]: float(result["score"]) for result in results}
 
 
 demo = gr.Interface(

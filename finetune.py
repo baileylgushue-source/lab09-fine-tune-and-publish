@@ -14,13 +14,9 @@ MODEL_NAME = "distilbert/distilbert-base-uncased"
 MAX_LENGTH = 128
 BATCH_SIZE = 16
 
-LABEL_TO_ID = {
-    label: i for i, label in enumerate(LABELS)
-}
+LABEL_TO_ID = {label: i for i, label in enumerate(LABELS)}
 
-ID_TO_LABEL = {
-    i: label for i, label in enumerate(LABELS)
-}
+ID_TO_LABEL = {i: label for i, label in enumerate(LABELS)}
 
 
 def tokenize_data(data, tokenizer):
@@ -134,11 +130,13 @@ def train_model(
         predictions = predict(model, tokenizer, val)
         accuracy = accuracy_score(val["label"], predictions)
 
-        history.append({
-            "epoch": epoch + 1,
-            "training_loss": average_loss,
-            "validation_accuracy": accuracy,
-        })
+        history.append(
+            {
+                "epoch": epoch + 1,
+                "training_loss": average_loss,
+                "validation_accuracy": accuracy,
+            }
+        )
 
         print(
             f"Epoch {epoch + 1}: "
